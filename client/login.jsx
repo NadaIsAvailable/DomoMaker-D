@@ -55,7 +55,7 @@ const LoginWindow = (props) => {
             <input id='pass' type='password' name='pass' placeholder='password'></input>
             <input className='formSubmit' type='submit' value='Sign in'></input>
         </form>
-    )
+    );
 };
 
 const SignupWindow = (props) => {
@@ -75,7 +75,7 @@ const SignupWindow = (props) => {
             <input id='pass2' type='password' name='pass2' placeholder='retype password'></input>
             <input className='formSubmit' type='submit' value='Sign up'></input>
         </form>
-    )
+    );
 };
 
 const init = () => {
