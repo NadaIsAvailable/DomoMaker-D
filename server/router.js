@@ -9,44 +9,38 @@ const router = (app) => {
         controllers.Account.loginPage
     );
     app.post(
-        '/login', 
+        '/login',
         mid.requiresSecure,
         mid.requiresLogout,
         controllers.Account.login
     );
 
-    app.get(
-        '/signup',
-        mid.requiresSecure,
-        mid.requiresLogout,
-        controllers.Account.signupPage
-    );
     app.post(
-        '/signup', 
+        '/signup',
         mid.requiresSecure,
         mid.requiresLogout,
         controllers.Account.signup
     );
 
     app.get(
-        '/logout', 
+        '/logout',
         mid.requiresLogin,
         controllers.Account.logout
     );
 
     app.get(
-        '/maker', 
+        '/maker',
         mid.requiresLogin,
         controllers.Domo.makerPage
     );
     app.post(
-        '/maker', 
+        '/maker',
         mid.requiresLogin,
         controllers.Domo.makeDomo
     );
 
     app.get(
-        '/', 
+        '/',
         mid.requiresLogout,
         controllers.Account.loginPage
     );
