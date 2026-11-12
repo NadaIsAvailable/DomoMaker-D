@@ -45,6 +45,12 @@ const router = (app) => {
         controllers.Domo.makeDomo
     );
 
+    app.delete(
+        '/domo',
+        mid.requiresLogin,
+        controllers.Domo.deleteDomo
+    );
+
     app.get(
         '/',
         mid.requiresLogout,

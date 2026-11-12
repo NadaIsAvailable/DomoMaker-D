@@ -46,7 +46,7 @@ const getDomos = async (req, res) => {
         const query = {
             owner: req.session.account._id,
         };
-        const docs = await Domo.find(query).select('name age teethNum').lean().exec();
+        const docs = await Domo.find(query).select('name age teethNum createdDate').lean().exec();
 
         return res.json({
             domos: docs,
@@ -59,8 +59,29 @@ const getDomos = async (req, res) => {
     }
 };
 
+const deleteDomo = async (req, res) => {
+    try {
+        const query = {
+            name: req.body.name,
+            age: req.body.age,
+            teethNum: req.body.teethNum,
+            createdDate: req.body.createdDate,
+            owner: req.session.account._id,
+        };
+        await Domo.deleteOne(query).lean().exec();
+
+        return res.status(204).end();
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({
+            error: 'Error deleting domo!',
+        });
+    }
+};
+
 module.exports = {
     makerPage,
     makeDomo,
     getDomos,
+    deleteDomo,
 };

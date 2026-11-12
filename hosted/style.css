@@ -196,6 +196,7 @@ nav:nth-child(1) {
 }
 
 .domo {
+    display: flex;
     width: 95%;
     margin: 0 auto;
     margin-top: 2px;
@@ -215,9 +216,16 @@ nav:nth-child(1) {
     background-color: #66bfff;
 }
 
+.domoProfile {
+    display: flex;
+    width: 30%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
 img.domoFace {
-    margin-left: 25px;
-    margin-right: 10px;
     height: 50px;
     width: 50px;
     border-radius: 4px;
@@ -233,29 +241,13 @@ h3.emptyDomo {
     margin-top: 18px;
 }
 
-h3.domoName {
-    float:left;
-    width: 200px;
+.domo h3 {
     font-weight: bold;
-    padding-left: 65px;
     font-size: 1.5em;
 }
 
-h3.domoAge {
-    float:right;
-    text-align: left;
-    width: 100px;
-    font-weight: bold;
-    padding-right: 40px;
-    font-size: 1.5em;
-}
-
-h3.domoTeethNum {
-    float:left;
-    text-align: left;
-    font-weight: bold;
-    padding-left: 150px;
-    font-size: 1.5em;
+button.deleteDomo {
+    float: left;
 }
 
 .domo:first-child {

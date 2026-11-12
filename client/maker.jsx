@@ -20,6 +20,17 @@ const handleDomo = (e, onDomoAdded) => {
     return false;
 };
 
+const handleDelete = (url, data, onDomoDeleted) => {
+    helper.hideError();
+
+    if (!data.name || !data.age || !data.teethNum || !data.createdDate) {
+        helper.handleError('Broken data! Cannot delete!');
+        return;
+    }
+
+    helper.sendDelete(url, { ...data }, onDomoDeleted);
+};
+
 const DomoForm = (props) => {
     return (
         <form id='domoForm'
@@ -37,7 +48,7 @@ const DomoForm = (props) => {
 
             <label htmlFor='teethNum'>Number of teeth: </label>
             <input id='domoTeethNum' type='number' min='0' name='teethNum'></input>
-            
+
             <input className='makeDomoSubmit' type='submit' value='Make Domo'></input>
         </form>
     )
@@ -66,10 +77,17 @@ const DomoList = (props) => {
     const domoNodes = domos.map(domo => {
         return (
             <div key={domo.id} className='domo'>
-                <img src='/assets/img/domoface.jpeg' alt='domo face' className='domoFace'></img>
-                <h3 className='domoName'>Name: {domo.name}</h3>
-                <h3 className='domoAge'>Age: {domo.age}</h3>
-                <h3 className='domoTeethNum'>Number of teeth: {domo.teethNum}</h3>
+                <div className='domoProfile'>
+                    <img src='/assets/img/domoface.jpeg' alt='domo face' className='domoFace'></img>
+                    <button className='deleteDomo' 
+                        onClick={() => handleDelete('/domo', domo, props.triggerReload)}
+                    >Delete</button>
+                </div>
+                <div className='domoInfo'>
+                    <h3 className='domoName'>Name: {domo.name}</h3>
+                    <h3 className='domoAge'>Age: {domo.age}</h3>
+                    <h3 className='domoTeethNum'>Number of teeth: {domo.teethNum}</h3>
+                </div>
             </div>
         );
     });
@@ -90,7 +108,7 @@ const App = () => {
                 <DomoForm triggerReload={() => setReloadDomos(!reloadDomos)} />
             </div>
             <div id='domos'>
-                <DomoList domos={[]} reloadDomos={reloadDomos} />
+                <DomoList domos={[]} reloadDomos={reloadDomos} triggerReload={() => setReloadDomos(!reloadDomos)} />
             </div>
         </div>
     );
